@@ -1,1 +1,1 @@
-export const url = "http://api-crud-react-motos.herokuapp.com/motos/";
+export const url = "https://api-crud-react-motos.herokuapp.com/motos/";
