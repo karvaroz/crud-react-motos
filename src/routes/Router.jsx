@@ -9,12 +9,12 @@ const Router = () => {
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route path="/" element={App} />
-        <Route path="/addNew" element={AddNewBike} />
+        <Route path="/" element={<App />} />
+        <Route path="/new" element={<AddNewBike />} />
         <Route path="/*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   );
 }
 
-export default Router
+export default Router;

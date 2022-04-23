@@ -6,14 +6,14 @@ const NavBar = () => {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand>MOTOS</Navbar.Brand>
+        <Navbar.Brand>MOTOS ELECTRICAS</Navbar.Brand>
         <Nav>
           <Link className="nav-link" to="/">
             Home
           </Link>
         </Nav>
         <Nav>
-          <Link className="nav-link" to="/addNew">
+          <Link className="nav-link" to="/new">
             Agregar
           </Link>
         </Nav>

@@ -1,11 +1,47 @@
-// import axios from "axios";
-import { Button } from "bootstrap";
+import axios from "axios";
 import React from "react";
-import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
-// import Swal from "sweetalert2";
+import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
+import Swal from "sweetalert2";
+import { url } from "../helpers/Url";
 
-const CardBike = ({ bike }) => {
-  
+const CardBike = ({
+  bike,
+  setUpdateList,
+  updateList,
+  handleCloseModal,
+  handleOpenModal,
+  setDataModal,
+}) => {
+  const handleDelete = async () => {
+    Swal.fire({
+      title: `¿Quierés eliminar ${bike.name}?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Eliminar",
+
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(url + bike.id).then((response) => {
+          if (response.status === 200) {
+            Swal.fire(
+              "Eliminado exitosamente",
+              `Eliminaste ${bike.name}`,
+              "success"
+            );
+            setUpdateList(!updateList);
+          } else {
+            Swal.fire("Error!", "No se pudo eliminar", "error");
+          }
+        });
+      }
+    });
+  };
+
+  const handleEdit = async () => {
+    handleOpenModal();
+    setDataModal(bike);
+  };
+
   return (
     <div className="col-sm-4 mb-5">
       <Card style={{ width: "18rem" }}>
@@ -15,8 +51,9 @@ const CardBike = ({ bike }) => {
           className="img-fluid img-thumbnail"
         />
         <Card.Body>
-          <Card.Title>{bike.name}</Card.Title>
-          <Card.Text>ID: {bike.id}</Card.Text>
+          <Card.Title>
+            {bike.name} - ID: {bike.id}
+          </Card.Title>
         </Card.Body>
         <ListGroup className="list-group-flush">
           <ListGroupItem>
@@ -32,10 +69,10 @@ const CardBike = ({ bike }) => {
           </ListGroupItem>
         </ListGroup>
         <Card.Body className="d-flex justify-content-evenly">
-          <Button className="btn btn-secondary">
+          <Button className="btn btn-secondary" onClick={handleEdit}>
             Editar
           </Button>
-          <Button className="btn btn-dark">
+          <Button className="btn btn-dark" onClick={handleDelete}>
             Eliminar
           </Button>
         </Card.Body>
