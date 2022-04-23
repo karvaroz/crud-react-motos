@@ -43,8 +43,8 @@ const CardBike = ({
   };
 
   return (
-    <div className="col-sm-4 mb-5">
-      <Card style={{ width: "18rem" }}>
+    <div className="col mb-4">
+      <Card style={{ width: "25rem", }}>
         <Card.Img
           variant="top"
           src={bike.image}
